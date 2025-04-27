@@ -37,12 +37,9 @@ public class OrderRepository {
             predicates.add(cb.lessThanOrEqualTo(orderRoot.get("orderDate"), dateEnd));
         }
 
-        if (!predicates.isEmpty()) {
-            cq.where(cb.and(predicates.toArray(new Predicate[0])));
-        }
+         cq.select(jobRoot).where(predicates.toArray(new Predicate[0]));
 
         return em.createQuery(cq).getResultList();
     }
-
 
 }
